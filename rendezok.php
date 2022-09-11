@@ -16,12 +16,14 @@ session_start();
 
 <body>
   <!------MENU------>
-  <ul>
-    <li><a href="filmek.php">Filmek</a></li>
-    <li><a href="szineszek.php">Színészek</a></li>
-    <li><a href="rendezok.php" class="active">Rendezők</a></li>
-    <li><a href="mufajok.php">Műfajok</a></li>
-  </ul>
+  <nav>
+    <ul>
+      <li><a href="filmek.php">Filmek</a></li>
+      <li><a href="szineszek.php">Színészek</a></li>
+      <li><a href="rendezok.php" class="active">Rendezők</a></li>
+      <li><a href="mufajok.php">Műfajok</a></li>
+    </ul>
+  </nav>
   <!------MENU------>
 </body>
 
