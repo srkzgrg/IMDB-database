@@ -12,6 +12,10 @@ body {
 
 /*-------------MENU----------*/
 
+nav {
+    z-index: 1;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -19,7 +23,7 @@ nav ul {
     overflow: hidden;
     background-color: #333;
     font-size: 20px;
-    position: fixed;
+    position: sticky;
     width: 100%;
 }
 
@@ -54,9 +58,12 @@ nav li a:hover {
 .courses-container {
     display: inline-block;
     position: relative;
-    margin-top: 8%;
+    margin-top: 70px;
+    margin-bottom: -30px;
     margin-left: 15px;
     margin-right: 15px;
+    z-index: 5;
+    width: 100%;
 }
 
 .course {
@@ -66,7 +73,14 @@ nav li a:hover {
     display: flex;
     max-width: 100%;
     overflow: hidden;
-    width: 670px;
+    width: 90%;
+    height: 230px;
+}
+
+.review {
+    margin-left: 50px;
+    margin-right: 20px;
+    margin-top: 30px;
 }
 
 .course h6 {
@@ -74,19 +88,31 @@ nav li a:hover {
     margin: 0;
     letter-spacing: 1px;
     text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
 .course h2 {
     letter-spacing: 1px;
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 25px;
+}
+
+.course button {
+    margin-top: 30%;
+}
+
+.course-info h2 {
+    letter-spacing: 1px;
+    margin: 10px 0;
+    font-size: 16px;
 }
 
 .course-preview {
     background-color: #eeb334;
     color: #fff;
     padding: 30px;
-    max-width: 250px;
+    /*max-width: 250px;*/
+    width: 30%;
 }
 
 .course-preview p {
@@ -94,7 +120,7 @@ nav li a:hover {
     display: inline-block;
     font-size: 12px;
     opacity: 0.6;
-    margin-top: 30px;
+    margin-top: 50px;
     text-decoration: none;
 }
 
