@@ -7,7 +7,6 @@ $password = "root";
 
 $sql = "SELECT * FROM `filmek`";
 
-
 try {
      $db = new PDO("mysql:host=$servername;dbname=IMDB", $username, $password);
      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +17,6 @@ try {
 
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -47,32 +45,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
      </nav>
      <!------MENU------>
      <?php
-     foreach ($resoult as $i){
-     $cim=$i["cim"];
-     $sql_ertekelesek = "SELECT AVG(ertekeles) FROM `ertekelesek` WHERE cim='$cim'";
-     $query2 = $db->query($sql_ertekelesek);
-     $resoult_avg = $query2->fetchAll(PDO::FETCH_ASSOC);
-
-     $ertekeles = round($resoult_avg[0]["AVG(ertekeles)"], 0);
-     echo "<div class='courses-container'>
-          <div class='course'>
-               <div class='course-preview'>
-                    <h6>" . $i["mufaj"] . "</h6>
-                    <h2>" . $i["cim"] . "</h2>
-                    <p>2022 <i class='fass fa-chevron-right'></i></p>
-               </div>
-               <div class='course-info'>
-                    <h6>Leírás</h6>
-                    <h2>" . $i["leiras"] . "</h2>
-                    <a href='ertekeles.php?id=".$i["id"]."'><button class='btn'>Értékelem</button></a>
-               </div>
-               <div class='review'>
-                    <h6>Értékelés</h6>
-                    <h2>".$ertekeles."</h2>
-               </div>
-          </div>
-     </div>";
-     }
+          
      ?>
 </body>
 </html>

@@ -22,6 +22,7 @@ session_start();
       <li><a href="szineszek.php">Színészek</a></li>
       <li><a href="rendezok.php">Rendezők</a></li>
       <li><a href="mufajok.php" class="active">Műfajok</a></li>
+      <li class="right-menu"><a href="bejelentkezes.php">Bejelentkezés</a></li>
     </ul>
   </nav>
   <!------MENU------>

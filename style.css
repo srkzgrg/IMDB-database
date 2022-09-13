@@ -52,8 +52,16 @@ nav li a:hover {
     background-color: #e6962d;
 }
 
+.right-menu {
+    float: right;
+    color: #eeb334;
+}
+
 
 /*-------------MENU----------*/
+
+
+/*-------------FILMEK----------*/
 
 .courses-container {
     display: inline-block;
@@ -81,6 +89,10 @@ nav li a:hover {
     margin-left: 50px;
     margin-right: 20px;
     margin-top: 30px;
+}
+
+.review h2 {
+    padding-left: 15px;
 }
 
 .course h6 {
@@ -175,3 +187,39 @@ nav li a:hover {
     right: 30px;
     letter-spacing: 1px;
 }
+
+
+/*-------------FILMEK----------*/
+
+
+/*-------------ÉRTÉKELÉS----------*/
+
+.ertekeles-btn {
+    background-color: #2A265F;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 25px;
+    position: absolute;
+    margin-left: 15px;
+    letter-spacing: 1px;
+}
+
+input[type=number] {
+    width: 15%;
+    border: 2px solid #eeb334;
+    border-radius: 4px;
+    height: 50px;
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+.ertekeles-cont h1 {
+    margin-left: 15px;
+    margin-top: 35px;
+}
+
+
+/*-------------ÉRTÉKELÉS----------*/

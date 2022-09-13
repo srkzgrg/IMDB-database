@@ -4,9 +4,9 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "root";
+$getId = $_GET['id'];
 
-$sql = "SELECT * FROM `filmek`";
-
+$sql = "SELECT * FROM `filmek` WHERE `id` = $getId";
 
 try {
      $db = new PDO("mysql:host=$servername;dbname=IMDB", $username, $password);
@@ -15,10 +15,16 @@ try {
 } catch (PDOException $e) {
      //echo "Connection failed: " . $e->getMessage();
 }
-
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+$cim = $resoult[0]["cim"];
 
+
+if (isset($_POST["submit"])) {
+     $ertekeles = $_POST["ertekeles"];
+     $sql_insert = "INSERT INTO `ertekelesek` (`cim`, `ertekeles`) VALUES ('$cim', '$ertekeles')";
+     $db->exec($sql_insert);
+}
 
 ?>
 
@@ -46,33 +52,13 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
           </ul>
      </nav>
      <!------MENU------>
-     <?php
-     foreach ($resoult as $i){
-     $cim=$i["cim"];
-     $sql_ertekelesek = "SELECT AVG(ertekeles) FROM `ertekelesek` WHERE cim='$cim'";
-     $query2 = $db->query($sql_ertekelesek);
-     $resoult_avg = $query2->fetchAll(PDO::FETCH_ASSOC);
-
-     $ertekeles = round($resoult_avg[0]["AVG(ertekeles)"], 0);
-     echo "<div class='courses-container'>
-          <div class='course'>
-               <div class='course-preview'>
-                    <h6>" . $i["mufaj"] . "</h6>
-                    <h2>" . $i["cim"] . "</h2>
-                    <p>2022 <i class='fass fa-chevron-right'></i></p>
-               </div>
-               <div class='course-info'>
-                    <h6>Leírás</h6>
-                    <h2>" . $i["leiras"] . "</h2>
-                    <a href='ertekeles.php?id=".$i["id"]."'><button class='btn'>Értékelem</button></a>
-               </div>
-               <div class='review'>
-                    <h6>Értékelés</h6>
-                    <h2>".$ertekeles."</h2>
-               </div>
-          </div>
-     </div>";
-     }
-     ?>
+     <div class="ertekeles-cont">
+          <form action="#" method="POST">
+               <h1>Kérlek értékeld a kiválaszott filmet!</h1>
+               <input type="number" name="ertekeles" max="10" min="1" required />
+               <button class="ertekeles-btn" name="submit">Értékelés</button>
+          </form>
+     </div>
 </body>
+
 </html>
