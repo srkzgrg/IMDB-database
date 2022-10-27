@@ -193,7 +193,7 @@ nav li a:hover {
     margin-right: 9%;
 }
 
-#trash {
+.trash {
     margin-left: 25px;
     color: #333;
 }
@@ -256,6 +256,37 @@ input[type=number] {
     border: 2px solid #eeb334;
 }
 
+.addFilm-cont input[type=password] {
+    width: 90%;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 15px;
+    border: 2px solid #eeb334;
+}
+
+.addFilm-cont select {
+    width: 80%;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 15px;
+}
+
+fieldset {
+    width: 90%;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 15px;
+    border: 2px solid #eeb334;
+}
+
+legend {
+    color: gray;
+    padding: 0 5px;
+}
+
 textarea {
     width: 90%;
     margin-bottom: 25px;
@@ -265,7 +296,7 @@ textarea {
     margin-left: 0;
     border: 2px solid #eeb334;
     resize: none;
-    height: 120px;
+    height: 220px;
     font-family: 'Muli', sans-serif;
 }
 
@@ -332,5 +363,113 @@ textarea {
     padding: 10px;
 }
 
+footer a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    border: 3px solid #eeb334;
+    background-color: #eeb334;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    padding: 17px;
+    background-color: #333;
+}
+
 
 /*-------------MODOSITAS----------*/
+
+
+/*-------------SZINESZ----------*/
+
+.container {
+    margin-left: 35px;
+    display: inline-flex;
+    width: 25%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+}
+
+.card-header img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.card-header {
+    height: 350px;
+}
+
+.card-body {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 20px;
+    padding-top: 0px !important;
+    padding-bottom: 40px;
+}
+
+.tag {
+    background: #eeb334;
+    border-radius: 50px;
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+}
+
+.nemzetiseg {
+    font-size: 14px;
+    margin-top: 15px;
+    background: #333;
+    margin-bottom: 15px
+}
+
+.card-body h4 {
+    font-size: 16px;
+}
+
+.card-body p {
+    margin-bottom: 5px;
+}
+
+.card-body li {
+    font-style: oblique;
+    list-style-type: circle;
+    margin-left: 15px;
+    font-size: 17px;
+    margin-top: 3px;
+}
+
+.trashszinesz a {
+    margin-left: 15px;
+    color: #333 !important;
+}
+
+.modifyszinesz a {
+    margin-left: 15px;
+    color: #333 !important;
+}
+
+
+/*-------------SZINESZ----------*/

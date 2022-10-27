@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Budapest');
 session_start();
 include 'db.php';
 
@@ -9,12 +10,13 @@ $sql = "SELECT * FROM `Film` WHERE `filmid` = $getId";
 
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
-$cim = $resoult[0]["cim"];
+$id = $resoult[0]["filmid"];
 
 
 if (isset($_POST["submit"])) {
      $ertekeles = $_POST["ertekeles"];
-     $sql_insert = "INSERT INTO `Ertekeles` (`cim`, `ertekeles`) VALUES ('$cim', '$ertekeles')";
+     $date = date("H:i:s");
+     $sql_insert = "INSERT INTO `Ertekeles` (`filmid`, `ido`, `ertekeles`) VALUES ('$id', '$date', '$ertekeles')";
      $db->exec($sql_insert);
 }
 

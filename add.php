@@ -1,6 +1,9 @@
 <?php
 include 'db.php';
 session_start();
+if(!$_SESSION['loged']){
+     header("Location: login.php");
+}
 
 ?>
 
@@ -23,7 +26,7 @@ session_start();
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
-               <li class="right-menu"><a href="modositas.php" class="active">Adatok hozzáadása</a></li>
+               <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
           </ul>
      </nav>
      <!------MENU------>
@@ -35,5 +38,8 @@ session_start();
                <li><a href="studiok.php">Stúdió hozzáadása</a></li>
           </ul>
      </div>
+     <footer>
+          <a href="logout.php">Kijelentkezés</a>
+     </footer>
 </body>
 </html>

@@ -1,16 +1,22 @@
 <?php
 include 'db.php';
 session_start();
-if(!$_SESSION['loged']){
-     header("Location: login.php");
-}
+$sql = "SELECT * FROM `Admin`";
+
+$query = $db->query($sql);
+$resoult = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST["submit"])) {
-     $cim = $_POST["cim"];
-     $leiras = $_POST["leiras"];
-     $sql_insert = "INSERT INTO `Film` (`filmid`, `cim`, `leiras`) VALUES (null, '$cim', '$leiras')";
-     $db->exec($sql_insert);
-     header("Location: index.php");
+     $felhnev = $_POST["felhnev"];
+     $passw = $_POST["passw"];
+     if($resoult[0]['felhnev'] == $felhnev && $resoult[0]['jelszo'] == $passw){
+          $_SESSION['loged'] = true;
+          header("Location: add.php");
+     }
+     else{
+          echo '<script>alert("Sikertelen bejelentkezés")</script>';
+     }
+     
 }
 
 ?>
@@ -40,12 +46,13 @@ if (isset($_POST["submit"])) {
      </nav>
      <!------MENU------>
      <div class="addFilm-cont">
-          <form action="#" method="POST">
-               <h1>Film hozzáadása</h1>
-               <input type="text" name="cim" placeholder="Film címe" required />
-               <textarea name="leiras" placeholder="Rövid leírás"></textarea>
-               <button class="addFilm-btn" name="submit">Film hozzáadása</button>
+          <form action="#" method="POST" autocomplete="off">
+               <h1>Bejelentkezés</h1>
+               <input type="text" name="felhnev" placeholder="Felhasználónév" required />
+               <input type="password" name="passw" placeholder="Jelszó" required />
+               <button class="addFilm-btn" name="submit">Bejelentkezés</button>
           </form>
      </div>
 </body>
+
 </html>

@@ -5,8 +5,6 @@ $sql = "SELECT * FROM `Film`";
 
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -34,8 +32,8 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
      <!------MENU------>
      <?php
      foreach ($resoult as $i){
-     $cim=$i["cim"];
-     $sql_ertekelesek = "SELECT AVG(ertekeles) FROM `Ertekeles` WHERE cim='$cim'";
+     $id=$i["filmid"];
+     $sql_ertekelesek = "SELECT AVG(ertekeles) FROM `Ertekeles` WHERE filmid='$id'";
      $query2 = $db->query($sql_ertekelesek);
      $resoult_avg = $query2->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,7 +43,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
                <div class='course-preview'>
                     <h6>" . "Film" . "</h6>
                     <h2>" . $i["cim"] . "</h2>
-                    <p><a href='modify.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-pen-to-square fa-2xl'></i></a><span id='trash'><a href='remove.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-trash fa-2xl'></i></a></span></p>
+                    <p><a href='modify.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-pen-to-square fa-2xl'></i></a><span class='trash'><a href='remove.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-trash fa-2xl'></i></a></span></p>
                </div>
                <div class='course-info'>
                     <h6>Leírás</h6>
