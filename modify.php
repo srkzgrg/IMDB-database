@@ -1,21 +1,19 @@
 <?php
-session_start();
 include 'db.php';
-
+session_start();
 $getId = $_GET['id'];
+$getObject = $_GET['object'];
 
 $sql = "SELECT * FROM `Film` WHERE `filmid` = $getId";
-
-
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
-$cim = $resoult[0]["cim"];
-
 
 if (isset($_POST["submit"])) {
-     $ertekeles = $_POST["ertekeles"];
-     $sql_insert = "INSERT INTO `Ertekeles` (`cim`, `ertekeles`) VALUES ('$cim', '$ertekeles')";
-     $db->exec($sql_insert);
+     $cim = $_POST["cim"];
+     $leiras = $_POST["leiras"];
+     $sql_update= "UPDATE Film SET `cim`='$cim', `leiras`='$leiras' WHERE `filmid`=$getId";
+     $db->exec($sql_update);
+     header("Location: index.php");
 }
 
 ?>
@@ -36,21 +34,21 @@ if (isset($_POST["submit"])) {
      <!------MENU------>
      <nav>
           <ul>
-               <li><a href="index.php" class="active">Filmek</a></li>
+               <li><a href="index.php">Filmek</a></li>
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
-               <li class="right-menu"><a href="add.php">Adatok hozzáadása</a></li>
+               <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
           </ul>
      </nav>
      <!------MENU------>
-     <div class="ertekeles-cont">
+     <div class="addFilm-cont">
           <form action="#" method="POST">
-               <h1>Kérlek értékeld a kiválaszott filmet!</h1>
-               <input type="number" name="ertekeles" max="10" min="1" required />
-               <button class="ertekeles-btn" name="submit">Értékelés</button>
+               <h1>Film módosítása</h1>
+               <input type="text" name="cim" placeholder="<?php echo $resoult[0]['cim']?>" required />
+               <textarea name="leiras" placeholder="<?php echo $resoult[0]['leiras']?>"></textarea>
+               <button class="addFilm-btn" name="submit">Film módosítása</button>
           </form>
      </div>
 </body>
-
 </html>

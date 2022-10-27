@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 session_start();
 ?>
 
@@ -18,11 +19,11 @@ session_start();
   <!------MENU------>
   <nav>
     <ul>
-      <li><a href="filmek.php">Filmek</a></li>
+      <li><a href="index.php">Filmek</a></li>
       <li><a href="szineszek.php">Színészek</a></li>
       <li><a href="rendezok.php">Rendezők</a></li>
-      <li><a href="mufajok.php" class="active">Műfajok</a></li>
-      <li class="right-menu"><a href="bejelentkezes.php">Bejelentkezés</a></li>
+      <li><a href="studiok.php" class="active" >Stúdiók</a></li>
+      <li class="right-menu"><a href="add.php">Adatok hozzáadása</a></li>
     </ul>
   </nav>
   <!------MENU------>
