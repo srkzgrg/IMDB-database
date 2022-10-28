@@ -27,6 +27,17 @@ session_start();
           </ul>
      </nav>
      <!------MENU------>
+     <div id="container">
+          <div class="product-details">
+               <h1>David Fincher</h1>
+               <p>amerikai</p>
+               <p>1956</p>
+          </div>
+          <div class="product-image">
+               <img src="images.jpeg" alt="">
+          </div>
+     </div>
+     </div>
 </body>
 
 </html>
