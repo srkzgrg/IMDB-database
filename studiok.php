@@ -62,7 +62,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
                <div class='studio-filmek'>
                     <h6 style='font-size: 12px'>Filmjei</h6>";
                foreach($filmek as $i){
-                    echo "<h2>- ".$i["cim"]."</h2>";
+                    echo "<h2>• ".$i["cim"]."</h2>";
                }
                echo "</div>
                </div>
