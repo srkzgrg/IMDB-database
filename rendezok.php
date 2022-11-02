@@ -24,6 +24,7 @@ session_start();
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php" class="active">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
                <?php
                     if(isset($_SESSION['loged_admin']) == true){
                     echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";

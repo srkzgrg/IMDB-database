@@ -49,7 +49,17 @@ if (isset($_POST["submit"])) {
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
-               <li class="right-menu"><a href="add.php">Adatok hozzáadása</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
+               <?php
+                    if(isset($_SESSION['loged_admin']) == true){
+                    echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";
+                    }else if(isset($_SESSION['loged']) == true){
+                         echo "<li class='right-menu'><a href='profile.php'>Profil</a></li>";
+                    }
+                    else{
+                         echo "<li class='right-menu'><a href='login.php'>Bejelentkezés</a></li>"; 
+                    }
+               ?>
           </ul>
      </nav>
      <!------MENU------>

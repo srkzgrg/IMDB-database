@@ -26,6 +26,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
                <?php
                     if(isset($_SESSION['loged_admin']) == true){
                     echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";
@@ -50,7 +51,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
      echo "<div class='courses-container'>
           <div class='course'>
                <div class='course-preview'>
-                    <h6>" . "Film" . "</h6>
+                    <h6>" . ($i['epizod'] == null ? "film" : $i['epizod'] . " epizod")."</h6>
                     <h2>" . $i["cim"] . "</h2>";
                     if(isset($_SESSION['loged_admin']) == true){
                          echo "<p><a href='modify.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-pen-to-square fa-2xl'></i></a><span class='trash'><a href='remove.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-trash fa-2xl'></i></a></span></p>";

@@ -2,7 +2,7 @@
 include 'db.php';
 session_start();
 if(!$_SESSION['loged_admin']){
-     header("Location: index.php");
+     header("Location: login.php");
 }
 
 if (isset($_POST["submit"])) {
@@ -36,6 +36,7 @@ if (isset($_POST["submit"])) {
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
                <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
           </ul>
      </nav>

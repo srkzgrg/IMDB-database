@@ -26,6 +26,7 @@ if(!$_SESSION['loged_admin']){
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
                <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
           </ul>
      </nav>
@@ -35,7 +36,7 @@ if(!$_SESSION['loged_admin']){
                <li><a href="addFilm.php">Film hozzáadása</a></li>
                <li><a href="addSzinesz.php">Színész hozzáadása</a></li>
                <li><a href="addRendezo.php">Rendező hozzáadás</a></li>
-               <li><a href="studiok.php">Stúdió hozzáadása</a></li>
+               <li><a href="addStudio.php">Stúdió hozzáadása</a></li>
           </ul>
      </div>
      <footer>

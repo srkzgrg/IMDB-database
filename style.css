@@ -696,3 +696,35 @@ footer {
 
 
 /*-------------REG/LOG----------*/
+
+/*-------------STATISZTIKA----------*/
+
+table{
+    width: 650px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 90px;
+
+
+}
+thead{
+    background-color: #e6962d;
+    text-align: center;
+    height: 30px;
+}
+
+tbody{
+    text-align: center;
+    background-color: #333;
+    color:white;
+}
+
+td{
+    height: 30px;
+}
+
+
+.statdiv{
+    margin: auto;
+    width: 50%;
+}
+/*-------------STATISZTIKA----------*/
