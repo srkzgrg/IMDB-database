@@ -1,8 +1,8 @@
 <?php
 include 'db.php';
 session_start();
-if(!$_SESSION['loged']){
-     header("Location: login.php");
+if(!$_SESSION['loged_admin']){
+     header("Location: index.php");
 }
 $getId = $_GET['id'];
 $getObject = $_GET['object'];
@@ -61,6 +61,94 @@ if (isset($_POST["submit"]) && $getObject == "szinesz") {
      header("Location: szineszek.php");
 }
 
+if (isset($_POST["submit"]) && $getObject == "rendezo") {
+     $nev = $_POST["nev"];
+     $nemzetiseg = $_POST["nemzetiseg"];
+     if ($_FILES["img"]["name"] == ""){
+          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `nemzetiseg`='$nemzetiseg' WHERE `rendezoid`=$getId";
+     }else{
+          $imagetmp=addslashes(file_get_contents($_FILES['img']['tmp_name']));
+          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `nemzetiseg`='$nemzetiseg', `kep`='$imagetmp' WHERE `rendezoid`=$getId";
+     }
+     $db->exec($sql_update);
+
+     //Filmek kezelése
+     $sql_filmid = "SELECT filmid FROM Film";
+     $query = $db->query($sql_filmid);
+     $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+
+     $sql = "SELECT filmid FROM film WHERE filmid in (SELECT filmid FROM Rendezi WHERE rendezoid='$getId')";
+     $query = $db->query($sql);
+     $szerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+
+     $szerepel_arr = [];
+
+     foreach($szerepel as $i){
+          array_push($szerepel_arr, $i['filmid']);
+     }
+
+     if(empty($_POST['filmids'])){
+          $sql_insert= "DELETE FROM Rendezi WHERE `rendezoid`='$getId'";
+          $db->exec($sql_insert);
+     }else if(!empty($_POST['filmids'])){
+
+     foreach($resoult as $i){
+          if(in_array($i['filmid'], $_POST['filmids']) && !in_array($i['filmid'], $szerepel_arr)){
+               $filmid = $i['filmid'];
+               $sql_insert= "INSERT INTO Rendezi (`filmid`, `rendezoid`) VALUES('$filmid', '$getId')";
+               $db->exec($sql_insert);
+          }
+          else if(!in_array($i['filmid'], $_POST['filmids']) && in_array($i['filmid'], $szerepel_arr)){
+               $filmid = $i['filmid'];
+               $sql_delete= "DELETE FROM Rendezi WHERE `filmid`='$filmid' and `rendezoid`='$getId'";
+               $db->exec($sql_delete);
+          }
+     }
+     }
+     header("Location: rendezok.php");
+}
+
+if (isset($_POST["submit"]) && $getObject == "studio") {
+     $nev = $_POST["nev"];
+     $alapitasiev = $_POST["alapitasiev"];
+          $sql_update= "UPDATE Filmstudio SET `nev`='$nev', `alapitasiev`='$alapitasiev' WHERE `studioid`=$getId";
+     $db->exec($sql_update);
+
+     //Filmek kezelése
+     $sql_filmid = "SELECT filmid FROM Film";
+     $query = $db->query($sql_filmid);
+     $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+
+     $sql = "SELECT filmid FROM film WHERE filmid in (SELECT filmid FROM Gyartja WHERE studioid='$getId')";
+     $query = $db->query($sql);
+     $szerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+
+     $szerepel_arr = [];
+
+     foreach($szerepel as $i){
+          array_push($szerepel_arr, $i['filmid']);
+     }
+
+     if(empty($_POST['filmids'])){
+          $sql_insert= "DELETE FROM Gyartja WHERE `studioid`='$getId'";
+          $db->exec($sql_insert);
+     }else if(!empty($_POST['filmids'])){
+
+     foreach($resoult as $i){
+          if(in_array($i['filmid'], $_POST['filmids']) && !in_array($i['filmid'], $szerepel_arr)){
+               $filmid = $i['filmid'];
+               $sql_insert= "INSERT INTO Gyartja (`filmid`, `studioid`) VALUES('$filmid', '$getId')";
+               $db->exec($sql_insert);
+          }
+          else if(!in_array($i['filmid'], $_POST['filmids']) && in_array($i['filmid'], $szerepel_arr)){
+               $filmid = $i['filmid'];
+               $sql_delete= "DELETE FROM Gyartja WHERE `filmid`='$filmid' and `studioid`='$getId'";
+               $db->exec($sql_delete);
+          }
+     }
+     }
+     header("Location: studiok.php");
+}
 ?>
 
 
@@ -131,6 +219,68 @@ if (isset($_POST["submit"]) && $getObject == "szinesz") {
                     }
                     echo "</fieldset>
                     <button class='addFilm-btn' name='submit'>Színész módosítása</button>
+               </form>
+          </div>";
+          }
+          if($getObject == "rendezo"){
+               $sql = "SELECT * FROM `Rendezo` WHERE `rendezoid` = $getId";
+               $query = $db->query($sql);
+               $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+               $rendezoid = $getId;
+               $sql2 = "SELECT * FROM film WHERE filmid not in (SELECT filmid FROM Rendezi WHERE rendezoid='$rendezoid')";
+               $query = $db->query($sql2);
+               $nemszerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+               $sql3 = "SELECT * FROM film WHERE filmid in (SELECT filmid FROM Rendezi WHERE rendezoid='$rendezoid')";
+               $query = $db->query($sql3);
+               $szerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+               echo "<div class='addFilm-cont'>
+               <form action='#' method='POST' enctype='multipart/form-data'>
+                    <h1>Rendező módosítása</h1>
+                    <input type='text' name='nev' value='".$resoult[0]['nev']."'required/>
+                    <input type='text' name='nemzetiseg' value='".$resoult[0]['nemzetiseg']."'required />
+                    <fieldset>
+                    <legend>Portré feltöltése</legend>
+                    <input type='file' name='img'>
+                    </fieldset>
+                    <fieldset>
+                    <legend>Filmek kezelése</legend>";
+                    foreach($nemszerepel as $i){
+                         echo "<input type='checkbox' name='filmids[]' value=".$i['filmid']."><span class='chbox'>".$i['cim']."</span>";
+                    }
+                    foreach($szerepel as $i){
+                         echo "<input type='checkbox' name='filmids[]' value=".$i['filmid']." checked><span class='chbox'>".$i['cim']."</span>";;
+                    }
+                    echo "</fieldset>
+                    <button class='addFilm-btn' name='submit'>Rendező módosítása</button>
+               </form>
+          </div>";
+          }
+          if($getObject == "studio"){
+               $sql = "SELECT * FROM `Filmstudio` WHERE `studioid` = $getId";
+               $query = $db->query($sql);
+               $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+               $studioid = $getId;
+               $sql2 = "SELECT * FROM film WHERE filmid not in (SELECT filmid FROM Gyartja WHERE studioid='$studioid')";
+               $query = $db->query($sql2);
+               $nemszerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+               $sql3 = "SELECT * FROM film WHERE filmid in (SELECT filmid FROM Gyartja WHERE studioid='$studioid')";
+               $query = $db->query($sql3);
+               $szerepel = $query->fetchAll(PDO::FETCH_ASSOC);
+               echo "<div class='addFilm-cont'>
+               <form action='#' method='POST' enctype='multipart/form-data'>
+                    <h1>Studió módosítása</h1>
+                    <input type='text' name='nev' value='".$resoult[0]['nev']."'required/>
+                    <input type='number' name='alapitasiev' value='".$resoult[0]['alapitasiev']."'required />
+                    <fieldset>
+                    <legend>Filmek kezelése</legend>";
+                    foreach($nemszerepel as $i){
+                         echo "<input type='checkbox' name='filmids[]' value=".$i['filmid']."><span class='chbox'>".$i['cim']."</span>";
+                    }
+                    foreach($szerepel as $i){
+                         echo "<input type='checkbox' name='filmids[]' value=".$i['filmid']." checked><span class='chbox'>".$i['cim']."</span>";;
+                    }
+                    echo "</fieldset>
+                    <button class='addFilm-btn' name='submit'>Studió módosítása</button>
                </form>
           </div>";
           }

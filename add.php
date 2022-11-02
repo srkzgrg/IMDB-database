@@ -1,8 +1,8 @@
 <?php
 include 'db.php';
 session_start();
-if(!$_SESSION['loged']){
-     header("Location: login.php");
+if(!$_SESSION['loged_admin']){
+     header("Location: index.php");
 }
 
 ?>
@@ -34,12 +34,12 @@ if(!$_SESSION['loged']){
      <ul> 
                <li><a href="addFilm.php">Film hozzáadása</a></li>
                <li><a href="addSzinesz.php">Színész hozzáadása</a></li>
-               <li><a href="rendezok.php">Rendező hozzáadás</a></li>
+               <li><a href="addRendezo.php">Rendező hozzáadás</a></li>
                <li><a href="studiok.php">Stúdió hozzáadása</a></li>
           </ul>
      </div>
      <footer>
-          <a href="logout.php">Kijelentkezés</a>
+          <a href="profile.php">Profil</a>
      </footer>
 </body>
 </html>

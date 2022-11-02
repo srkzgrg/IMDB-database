@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 session_start();
-
 if(!$_SESSION['loged_admin']){
      header("Location: index.php");
 }
@@ -10,9 +9,9 @@ if (isset($_POST["submit"])) {
      $nev = $_POST["nev"];
      $nemzetiseg = $_POST["nemzetiseg"];
      $imagetmp=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-     $sql_insert = "INSERT INTO `Szinesz` (`szineszid`, `nev`, `nemzetiseg`, `kep`) VALUES (null, '$nev', '$nemzetiseg', '$imagetmp')";
+     $sql_insert = "INSERT INTO `Rendezo` (`rendezoid`, `nev`, `nemzetiseg`, `kep`) VALUES (null, '$nev', '$nemzetiseg', '$imagetmp')";
      $db->exec($sql_insert);
-     header("Location: szineszek.php");
+     header("Location: rendezok.php");
 }
 
 ?>
@@ -43,14 +42,14 @@ if (isset($_POST["submit"])) {
      <!------MENU------>
      <div class="addFilm-cont">
           <form action="#" method="POST" enctype="multipart/form-data">
-               <h1>Színész hozzáadása</h1>
-               <input type="text" name="nev" placeholder="Színész neve" required />
+               <h1>Rendező hozzáadása</h1>
+               <input type="text" name="nev" placeholder="Rendező neve" required />
                <input type="text" name="nemzetiseg" placeholder="Nemzetisége" required />
                <fieldset>
                <legend>Portré feltöltése</legend>
                <input type="file" name="img" required>
                </fieldset>
-               <button class="addFilm-btn" name="submit">Színész hozzáadása</button>
+               <button class="addFilm-btn" name="submit">Rendező hozzáadása</button>
           </form>
      </div>
 </body>

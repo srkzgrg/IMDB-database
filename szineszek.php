@@ -29,7 +29,16 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
                <li><a href="szineszek.php" class="active">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
-               <li class="right-menu"><a href="add.php">Adatok hozzáadása</a></li>
+               <?php
+                    if(isset($_SESSION['loged_admin']) == true){
+                    echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";
+                    }else if(isset($_SESSION['loged']) == true){
+                         echo "<li class='right-menu'><a href='profile.php'>Profil</a></li>";
+                    }
+                    else{
+                         echo "<li class='right-menu'><a href='login.php'>Bejelentkezés</a></li>"; 
+                    }
+               ?>
           </ul>
      </nav>
      <!------MENU------>
@@ -45,10 +54,13 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
        echo '<img src="data:image/jpeg;base64,'.base64_encode( $i['kep'] ).'"/>';
       echo "</div>
       <div class='card-body'>
-        <p><span class='tag'>".$i['nev']."</span><span class='modifyszinesz'><a href='modify.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-pen-to-square'></i></a><span class='trashszinesz'><a href='remove.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-trash fa'></i></a></span></span></p>
-        <span class='tag nemzetiseg'>
+        <p><span class='tag'>".$i['nev']."</span>";
+        if(isset($_SESSION['loged_admin']) == true){
+          echo "<span class='modifyszinesz'><a href='modify.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-pen-to-square'></i></a><span class='trashszinesz'><a href='remove.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-trash fa'></i></a></span></span></p>";
+        }
+        echo "<p><span class='tag nemzetiseg'>
           ".$i['nemzetiseg']."
-          </span> 
+          </span></p> 
         <h4>
           <i class='fa-solid fa-film fa-2xl'></i> :
         </h4>";

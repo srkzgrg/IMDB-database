@@ -1,23 +1,30 @@
 <?php
-date_default_timezone_set('Europe/Budapest');
 session_start();
 include 'db.php';
+if(!isset($_SESSION['loged']) && !isset($_SESSION['loged_admin'])){
+     header("Location: login.php");
+}
 
 $getId = $_GET['id'];
-
 $sql = "SELECT * FROM `Film` WHERE `filmid` = $getId";
-
-
 $query = $db->query($sql);
 $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
 $id = $resoult[0]["filmid"];
 
 
 if (isset($_POST["submit"])) {
-     $ertekeles = $_POST["ertekeles"];
-     $date = date("H:i:s");
-     $sql_insert = "INSERT INTO `Ertekeles` (`filmid`, `ido`, `ertekeles`) VALUES ('$id', '$date', '$ertekeles')";
-     $db->exec($sql_insert);
+     $felhnev = $_SESSION['felhnev'];
+     $sql = "SELECT * FROM Ertekeles WHERE `filmid` = $getId AND `felhnev` = '$felhnev'";
+     $query = $db->query($sql);
+     $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+     if($resoult == FALSE){
+          $ertekeles = $_POST["ertekeles"];
+          $sql_insert = "INSERT INTO `Ertekeles` (`filmid`, `felhnev`, `ertekeles`) VALUES ('$id', '$felhnev', '$ertekeles')";
+          $db->exec($sql_insert);
+     }else{
+          echo '<script>alert("Ezt a filmet korábban már értékelted!")</script>';
+     }
+     
 }
 
 ?>

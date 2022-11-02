@@ -5,23 +5,21 @@ session_start();
 if (isset($_POST["submit"])) {
      $felhnev = $_POST["felhnev"];
      $passw = $_POST["passw"];
-     $sql = "SELECT * FROM `Felhasznalo` WHERE `felhnev`='$felhnev'";
-     $query = $db->query($sql);
-     $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
-     if($resoult == FALSE){
-          echo '<script>alert("Nem létezik ilyen felhasználó!")</script>';
-     }
-     else if($resoult[0]['felhnev'] == $felhnev && $resoult[0]['jelszo'] == $passw){
-          if($resoult[0]['admin'] == 1){
-               $_SESSION['loged_admin'] = true; 
+     $passw2 = $_POST["passw2"];
+     if($passw == $passw2){
+          $sql = "SELECT * FROM `Felhasznalo` WHERE `felhnev`='$felhnev'";
+          $query = $db->query($sql);
+          $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+          if($resoult == FALSE){
+               $sql_insert = "INSERT INTO `Felhasznalo` (`felhnev`, `jelszo`, `admin`) VALUES ('$felhnev', '$passw', '0')";
+               $db->exec($sql_insert);
+               header("location: index.php");
           }else{
-               $_SESSION['loged'] = true;
+               echo '<script>alert("Létezik már ezzel a névvel felhasználó!")</script>';
           }
-          $_SESSION['felhnev'] = $felhnev;  
-          header("Location: index.php");
      }
      else{
-          echo '<script>alert("Helytelen jelszó!")</script>';
+          echo '<script>alert("A két jelszó nem egyezik")</script>';
      }
      
 }
@@ -48,17 +46,18 @@ if (isset($_POST["submit"])) {
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
-               <li class="right-menu"><a href="add.php" class="active">Bejelentkezés</a></li>
+               <li class="right-menu"><a href="add.php" class="active">Regisztráció2</a></li>
           </ul>
      </nav>
      <!------MENU------>
      <div class="addFilm-cont">
           <form action="#" method="POST" autocomplete="off">
-               <h1>Bejelentkezés</h1>
+               <h1>Regisztráció</h1>
                <input type="text" name="felhnev" placeholder="Felhasználónév" required />
                <input type="password" name="passw" placeholder="Jelszó" required />
-               <button class="addFilm-btn" name="submit">Bejelentkezés</button>
-               <a class="addFilm-reglog" href="register.php">Regisztrálás</a>
+               <input type="password" name="passw2" placeholder="Jelszó mégegyszer" required />
+               <button class="addFilm-btn" name="submit">Regisztrálás</button>
+               <a class="addFilm-reglog" href="login.php">Bejelentkezés</a>
           </form>
      </div>
 </body>
