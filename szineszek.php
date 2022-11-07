@@ -60,7 +60,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
           echo "<span class='modifyszinesz'><a href='modify.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-pen-to-square'></i></a><span class='trashszinesz'><a href='remove.php?object=szinesz&id=".$i["szineszid"]."'><i class='fa-solid fa-trash fa'></i></a></span></span></p>";
         }
         echo "<p><span class='tag nemzetiseg'>
-          ".$i['nemzetiseg']."
+          ".$i['szuletesiev']."
           </span></p> 
         <h4>
           <i class='fa-solid fa-film fa-2xl'></i> :

@@ -10,8 +10,9 @@ if (isset($_POST["submit"])) {
           $sql = "SELECT * FROM `Felhasznalo` WHERE `felhnev`='$felhnev'";
           $query = $db->query($sql);
           $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
+          $password = password_hash($passw, PASSWORD_DEFAULT);
           if($resoult == FALSE){
-               $sql_insert = "INSERT INTO `Felhasznalo` (`felhnev`, `jelszo`, `admin`) VALUES ('$felhnev', '$passw', '0')";
+               $sql_insert = "INSERT INTO `Felhasznalo` (`felhnev`, `jelszo`, `admin`) VALUES ('$felhnev', '$password', '0')";
                $db->exec($sql_insert);
                header("location: index.php");
           }else{

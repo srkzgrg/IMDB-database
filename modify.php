@@ -16,12 +16,12 @@ if (isset($_POST["submit"]) && $getObject == "film") {
 }
 if (isset($_POST["submit"]) && $getObject == "szinesz") {
      $nev = $_POST["nev"];
-     $nemzetiseg = $_POST["nemzetiseg"];
+     $szuletesiev = $_POST["szuletesiev"];
      if ($_FILES["img"]["name"] == ""){
-          $sql_update= "UPDATE Szinesz SET `nev`='$nev', `nemzetiseg`='$nemzetiseg' WHERE `szineszid`=$getId";
+          $sql_update= "UPDATE Szinesz SET `nev`='$nev', `szuletesiev`='$szuletesiev' WHERE `szineszid`=$getId";
      }else{
           $imagetmp=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-          $sql_update= "UPDATE Szinesz SET `nev`='$nev', `nemzetiseg`='$nemzetiseg', `kep`='$imagetmp' WHERE `szineszid`=$getId";
+          $sql_update= "UPDATE Szinesz SET `nev`='$nev', `szuletesiev`='$szuletesiev', `kep`='$imagetmp' WHERE `szineszid`=$getId";
      }
      $db->exec($sql_update);
 
@@ -63,12 +63,12 @@ if (isset($_POST["submit"]) && $getObject == "szinesz") {
 
 if (isset($_POST["submit"]) && $getObject == "rendezo") {
      $nev = $_POST["nev"];
-     $nemzetiseg = $_POST["nemzetiseg"];
+     $szuletesiev = $_POST["szuletesiev"];
      if ($_FILES["img"]["name"] == ""){
-          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `nemzetiseg`='$nemzetiseg' WHERE `rendezoid`=$getId";
+          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `szuletesiev`='$szuletesiev' WHERE `rendezoid`=$getId";
      }else{
           $imagetmp=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `nemzetiseg`='$nemzetiseg', `kep`='$imagetmp' WHERE `rendezoid`=$getId";
+          $sql_update= "UPDATE Rendezo SET `nev`='$nev', `szuletesiev`='$szuletesiev', `kep`='$imagetmp' WHERE `rendezoid`=$getId";
      }
      $db->exec($sql_update);
 
@@ -204,7 +204,7 @@ if (isset($_POST["submit"]) && $getObject == "studio") {
                <form action='#' method='POST' enctype='multipart/form-data'>
                     <h1>Színész módosítása</h1>
                     <input type='text' name='nev' value='".$resoult[0]['nev']."'required/>
-                    <input type='text' name='nemzetiseg' value='".$resoult[0]['nemzetiseg']."'required />
+                    <input type='number' name='szuletesiev' value='".$resoult[0]['szuletesiev']."'required />
                     <fieldset>
                     <legend>Portré feltöltése</legend>
                     <input type='file' name='img'>
@@ -237,7 +237,7 @@ if (isset($_POST["submit"]) && $getObject == "studio") {
                <form action='#' method='POST' enctype='multipart/form-data'>
                     <h1>Rendező módosítása</h1>
                     <input type='text' name='nev' value='".$resoult[0]['nev']."'required/>
-                    <input type='text' name='nemzetiseg' value='".$resoult[0]['nemzetiseg']."'required />
+                    <input type='number' name='szuletesiev' value='".$resoult[0]['szuletesiev']."'required />
                     <fieldset>
                     <legend>Portré feltöltése</legend>
                     <input type='file' name='img'>

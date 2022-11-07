@@ -50,7 +50,7 @@ session_start();
      echo "<div id='container'>
           <div class='product-details'>
                <h1>".$i['nev']."</h1>
-               <p style='margin-bottom:35px'>".$i['nemzetiseg']."</p>
+               <p style='margin-bottom:35px'>".$i['szuletesiev']."</p>
                <span class='clapperboard'><i class='fa-solid fa-clapperboard fa-2xl'></i> :</span>
                <ul>";
                foreach($filmek as $j){

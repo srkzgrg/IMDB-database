@@ -13,11 +13,20 @@
       if(count($resoult) < 3) $n = count($resoult);
       else $n = 3;
 
+      #Legtöbb filmet rendezett rendező
       $sql_rendezo = "SELECT Rendezo.nev, COUNT(Rendezi.rendezoid) FROM Rendezi INNER JOIN Rendezo ON Rendezo.rendezoid = Rendezi.rendezoid GROUP BY Rendezi.rendezoid ORDER BY COUNT(Rendezi.rendezoid) DESC";
       $query = $db->query($sql_rendezo);
       $resoult_rendezo = $query->fetchAll(PDO::FETCH_ASSOC);
       if(count($resoult_rendezo) < 3) $k = count($resoult_rendezo);
       else $k = 3;
+
+
+       #Legfiatalabb színészek
+       $sql_legfiatalabb = "SELECT nev, YEAR(NOW()) - szuletesiev AS Eletkor FROM `Szinesz` ORDER BY Eletkor";
+       $query = $db->query($sql_legfiatalabb);
+       $resoult_legfiatalabb = $query->fetchAll(PDO::FETCH_ASSOC);
+       if(count($resoult_rendezo) < 3) $j = count($resoult_legfiatalabb);
+       else $j = 3;
       
 
 ?>
@@ -89,6 +98,27 @@
            echo "<tr>
             <td>".$resoult_rendezo[$i]['nev']."</td>
             <td>".$resoult_rendezo[$i]['COUNT(Rendezi.rendezoid)']."</td>
+            </tr>";
+      }
+      ?>
+        </tbody>
+    </table>
+    </div>
+    <div class="statdiv">
+<h2>Legfiatalabb színészek <span style="color:#e6962d">[TOP 3]</span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Színész neve</th>
+            <th>Életkora</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        for($i = 0; $i < $j; $i++){
+           echo "<tr>
+            <td>".$resoult_legfiatalabb[$i]['nev']."</td>
+            <td>".$resoult_legfiatalabb[$i]['Eletkor']."</td>
             </tr>";
       }
       ?>

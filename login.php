@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
      if($resoult == FALSE){
           echo '<script>alert("Nem létezik ilyen felhasználó!")</script>';
      }
-     else if($resoult[0]['felhnev'] == $felhnev && $resoult[0]['jelszo'] == $passw){
+     else if(password_verify($passw, $resoult[0]['jelszo'])){
           if($resoult[0]['admin'] == 1){
                $_SESSION['loged_admin'] = true; 
           }else{

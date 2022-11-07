@@ -10,7 +10,8 @@ if (isset($_POST["submit"])) {
      $passw = $_POST["passw"];
      $passw2 = $_POST["passw2"];
      if($passw == $passw2){
-          $sql_update = "UPDATE Felhasznalo SET `jelszo`='$passw' WHERE `felhnev`='$felhnev'";
+          $password = password_hash($passw, PASSWORD_DEFAULT);
+          $sql_update = "UPDATE Felhasznalo SET `jelszo`='$password' WHERE `felhnev`='$felhnev'";
           $db->exec($sql_update);
           header("location: profile.php");
      }
