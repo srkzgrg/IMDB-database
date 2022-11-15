@@ -149,6 +149,19 @@ if (isset($_POST["submit"]) && $getObject == "studio") {
      }
      header("Location: studiok.php");
 }
+
+if($getObject == "felhasznalo"){
+     $sql_admin = "SELECT `admin` FROM `Felhasznalo` WHERE `felhnev` = '$getId'";
+     $query = $db->query($sql_admin);
+     $admin = $query->fetchAll(PDO::FETCH_ASSOC);
+     if($admin[0]['admin'] == 0){
+          $sql_updatefelh = "UPDATE `Felhasznalo` SET `admin`='1' WHERE `felhnev` = '$getId'";
+     }else{
+          $sql_updatefelh = "UPDATE `Felhasznalo` SET `admin`='0' WHERE `felhnev` = '$getId'";
+     }
+     $db->exec($sql_updatefelh);
+     header("Location: profilok.php");
+}
 ?>
 
 
@@ -171,6 +184,7 @@ if (isset($_POST["submit"]) && $getObject == "studio") {
                <li><a href="szineszek.php">Színészek</a></li>
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
+               <li><a href="statisztika.php">Statisztika</a></li>
                <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
           </ul>
      </nav>

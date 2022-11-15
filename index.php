@@ -48,16 +48,16 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
      $resoult_avg = $query2->fetchAll(PDO::FETCH_ASSOC);
 
      $ertekeles = round($resoult_avg[0]["AVG(ertekeles)"], 0);
-     echo "<div class='courses-container'>
-          <div class='course'>
-               <div class='course-preview'>
+     echo "<div class='filmek-container'>
+          <div class='film'>
+               <div class='film-preview'>
                     <h6>" . ($i['epizod'] == null ? "film" : $i['epizod'] . " epizod")."</h6>
                     <h2>" . $i["cim"] . "</h2>";
                     if(isset($_SESSION['loged_admin']) == true){
                          echo "<p><a href='modify.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-pen-to-square fa-2xl'></i></a><span class='trash'><a href='remove.php?object=film&id=".$i["filmid"]."'><i class='fa-solid fa-trash fa-2xl'></i></a></span></p>";
                     }
                echo "</div>
-               <div class='course-info'>
+               <div class='film-info'>
                     <h6>Leírás</h6>
                     <h2>" . $i["leiras"] . "</h2>
                     

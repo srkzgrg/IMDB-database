@@ -62,7 +62,15 @@ if (isset($_POST["submit"])) {
      </div>
      <footer>
           <a href="logout.php">Kijelentkezés</a>
-          <a href="remove_acc.php" style="margin-left: 20px">Fiók törlése</a>
+          
+          <?php
+               if($_SESSION['felhnev'] != "admin"){
+                    echo "<a href='remove_acc.php' style='margin-left: 20px'>Fiók törlése</a>";
+               }
+               if(isset($_SESSION['loged_admin'])){
+                    echo "<a href='add.php' style='margin-left: 20px'>Adatok hozzáadása</a>";
+               }
+          ?>
      </footer>
 </body>
 </html>

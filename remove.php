@@ -28,5 +28,10 @@ else{
           $query = $db->query($sql_delete);
           header("Location: rendezok.php");
      }
+     if ($getObject == "felhasznalo"){
+          $sql_delete = "DELETE FROM `Felhasznalo` WHERE `felhnev`='$getId'";
+          $query = $db->query($sql_delete);
+          header("Location: profilok.php");
+     }
 }
 ?>

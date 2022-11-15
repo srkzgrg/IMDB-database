@@ -4,6 +4,9 @@ session_start();
 if(!$_SESSION['loged_admin']){
      header("Location: login.php");
 }
+$sql_filmek = "SELECT * FROM film";
+$query = $db->query($sql_filmek);
+$filmek = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST["submit"])) {
      $nev = $_POST["nev"];
@@ -11,6 +14,7 @@ if (isset($_POST["submit"])) {
      $imagetmp=addslashes(file_get_contents($_FILES['img']['tmp_name']));
      $sql_insert = "INSERT INTO `Rendezo` (`rendezoid`, `nev`, `szuletesiev`, `kep`) VALUES (null, '$nev', '$szuletesiev', '$imagetmp')";
      $db->exec($sql_insert);
+
      header("Location: rendezok.php");
 }
 

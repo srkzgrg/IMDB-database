@@ -41,6 +41,7 @@ if(!$_SESSION['loged_admin']){
      </div>
      <footer>
           <a href="profile.php">Profil</a>
+          <a href="profilok.php" style="margin-left: 20px">Felhasználók</a>
      </footer>
 </body>
 </html>

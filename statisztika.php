@@ -27,6 +27,12 @@
        $resoult_legfiatalabb = $query->fetchAll(PDO::FETCH_ASSOC);
        if(count($resoult_rendezo) < 3) $j = count($resoult_legfiatalabb);
        else $j = 3;
+
+
+       #Stúdiók darabszáma, amelyek 1980 előtt jöttek lérte, és legalább 1 filmet rendeztek
+       $sql_studiodb = "SELECT COUNT(*) FROM (SELECT Filmstudio.studioid FROM Filmstudio INNER JOIN Gyartja ON Gyartja.studioid = Filmstudio.studioid WHERE Filmstudio.alapitasiev < 1980) AS Statisztika";
+       $query = $db->query($sql_studiodb);
+       $resoult_studiodb = $query->fetchAll(PDO::FETCH_ASSOC);
       
 
 ?>
@@ -121,6 +127,25 @@
             <td>".$resoult_legfiatalabb[$i]['Eletkor']."</td>
             </tr>";
       }
+      ?>
+        </tbody>
+    </table>
+    </div>
+    <div class="statdiv">
+<h2>Egyéb édekességek </h2>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+           echo "<tr>
+            <td>Stúdiók, amik 1980 előtt jöttek lérte, és min. 1 filmet rendeztek</td>
+            <td>".$resoult_studiodb[0]['COUNT(*)']." db</td>
+            </tr>";
       ?>
         </tbody>
     </table>
