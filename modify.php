@@ -185,7 +185,7 @@ if($getObject == "felhasznalo"){
                <li><a href="rendezok.php">Rendezők</a></li>
                <li><a href="studiok.php">Stúdiók</a></li>
                <li><a href="statisztika.php">Statisztika</a></li>
-               <li class="right-menu"><a href="add.php" class="active">Adatok hozzáadása</a></li>
+               <li class="right-menu"><a href="add.php" class="active">Admin panel</a></li>
           </ul>
      </nav>
      <!------MENU------>

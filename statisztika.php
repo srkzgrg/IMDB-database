@@ -33,6 +33,11 @@
        $sql_studiodb = "SELECT COUNT(*) FROM (SELECT Filmstudio.studioid FROM Filmstudio INNER JOIN Gyartja ON Gyartja.studioid = Filmstudio.studioid WHERE Filmstudio.alapitasiev < 1980) AS Statisztika";
        $query = $db->query($sql_studiodb);
        $resoult_studiodb = $query->fetchAll(PDO::FETCH_ASSOC);
+
+       #20 epizód feletti sorozatok darabszáma
+       $sql_sorozatdb = "SELECT COUNT(*) FROM `Film` WHERE `epizod` > 20";
+       $query = $db->query($sql_sorozatdb);
+       $resoult_sorozatdb = $query->fetchAll(PDO::FETCH_ASSOC);
       
 
 ?>
@@ -56,7 +61,7 @@
                <li><a href="statisztika.php" class="active">Statisztika</a></li>
                <?php
                     if(isset($_SESSION['loged_admin']) == true){
-                    echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";
+                    echo "<li class='right-menu'><a href='add.php'>Admin panel</a></li>";
                     }else if(isset($_SESSION['loged']) == true){
                          echo "<li class='right-menu'><a href='profile.php'>Profil</a></li>";
                     }
@@ -145,6 +150,10 @@
            echo "<tr>
             <td>Stúdiók, amik 1980 előtt jöttek lérte, és min. 1 filmet rendeztek</td>
             <td>".$resoult_studiodb[0]['COUNT(*)']." db</td>
+            </tr>
+            <tr>
+            <td>20 epizód feletti sorozatok száma</td>
+            <td>".$resoult_sorozatdb[0]['COUNT(*)']." db</td>
             </tr>";
       ?>
         </tbody>

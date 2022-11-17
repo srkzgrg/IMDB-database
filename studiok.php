@@ -32,7 +32,7 @@ $resoult = $query->fetchAll(PDO::FETCH_ASSOC);
                <li><a href="statisztika.php">Statisztika</a></li>
                <?php
                     if(isset($_SESSION['loged_admin']) == true){
-                    echo "<li class='right-menu'><a href='add.php'>Adatok hozzáadása</a></li>";
+                    echo "<li class='right-menu'><a href='add.php'>Admin panel</a></li>";
                     }else if(isset($_SESSION['loged']) == true){
                          echo "<li class='right-menu'><a href='profile.php'>Profil</a></li>";
                     }
