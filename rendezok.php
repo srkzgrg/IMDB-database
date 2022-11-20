@@ -12,7 +12,7 @@ session_start();
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://kit.fontawesome.com/3b67dcaa6d.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="css/style.css">
      <title>IMDB - Filmek tárháza</title>
 </head>
 

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "adatbkotprog";
-$password = "adatb2022";
+$username = "root";
+$password = "";
 
 try {
      $db = new PDO("mysql:host=$servername;dbname=IMDB", $username, $password);
